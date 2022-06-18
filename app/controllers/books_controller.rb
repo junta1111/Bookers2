@@ -9,4 +9,15 @@ class BooksController < ApplicationController
     @book_image.save
     redirect_to book_path
   end
+  
+  def index
+  end
+  
+  def show
+  end
+  
+  def destroy
+  end
+  
 end
+
