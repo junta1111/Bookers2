@@ -1,4 +1,14 @@
 <div>
-  <h3><%= @user.name %></h3>
+  <h2><%= @user.name %></h2>
   <%= image_tag @user.get_profile_image(100,100) %>
 </div>
+
+<h2>New book</h2>
+ <%= form_with model: Book.new do |f| %>
+ <h5>Title</h5>
+ <%= f.text_field :title %>
+ <h5>Opinion</h5>
+ <%= f.text_area :body %><br>
+ <%= f.submit 'Create Book' %>
+<% end %>
+

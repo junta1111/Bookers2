@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :users
   resources :books
   get "/homes/about" => "homes#about", as: "about"
+  post 'books' => 'books#create' 
 end
