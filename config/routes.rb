@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :books
   get "/homes/about" => "homes#about", as: "about"
   post 'books' => 'books#create' 
+  patch 'books/:id' => 'books#update', as: 'update_book'
 end
