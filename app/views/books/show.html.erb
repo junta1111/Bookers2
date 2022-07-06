@@ -17,6 +17,8 @@
  <%= f.submit 'Create Book' %>
 <% end %>
 
+<h2>Book detail</h2>
+<%= image_tag current_user.get_profile_image(100,100) %>
 <%= @book.title %>
 <%= @book.body %>
 <% if @book.user == current_user %>
