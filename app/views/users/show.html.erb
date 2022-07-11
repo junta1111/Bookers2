@@ -1,60 +1,64 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-    <h2>User info h</h2>
-    <table class="table">
-     <thead>
-      <tr>
-      <th>name</th>
-      <th>introduction</th>
-      </tr>
-     </thead>
+      <h2>User info h</h2>
       <%= image_tag current_user.get_profile_image(100,100) %>
-      <%= current_user.name %>
-      <%= current_user.introduction %>
-    </table>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th>
+              <%= current_user.name %>
+            </th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th>
+              <%= current_user.introduction %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to edit_user_path(@user) ,class:'btn btn-outline-secondary btn-block' do %>
+       <i class="fa-solid fa-user-gear"></i>
+      <% end %>
+      <h2 class="mt-3">New book</h2>
+      <%= form_with model: @book do |f| %>
+        <h4>Title</h4>
+        <%= f.text_field :title %>
+        <h4>Opinion</h4>
+        <%= f.text_area :body %><br>
+        <%= f.submit 'Create Book' %>
+      <% end %>
+    </div>
+    
+    <div class="col-md 8 offset-md-1">
+      <h2>Books</h2>
+        <table class="table table-hover table-inverse">
+         <thead>
+          <tr>
+           <th></th>
+           <th>Title</th>
+           <th>Opinion</th>
+           <th colspan="3"></th>
+          </tr>
+         </thead>
+         <tbody>
+         <% @books.each do |book| %>
+          <tr>
+           <td>
+             <%= image_tag current_user.get_profile_image(100,100) %>
+           <td>
+           <td>
+             <%= link_to book.title, book_path(book.id) %>
+           </td>
+           <td>
+             <%= book.body %>
+           </td>
+          </tr>
+         <% end %>
+         </tbody>
+        </table>
     </div>
   </div>
 </div>
-
-<div class="row">
- <%= link_to edit_user_path(@user) ,class:'btn btn-outline-secondary btn-block' do %>
- <i class="fa-solid fa-user-gear"></i>
- <% end %>
-</div>
-
-<h2 class="mt-3">New book</h2>
-<%= form_with model: @book do |f| %>
-<h4>Title</h4>
- <%= f.text_field :title %>
-<h4>Opinion</h4>
- <%= f.text_area :body %><br>
- <%= f.submit 'Create Book' %>
-<% end %>
-
-<h2>Books</h2>
-<table class="table table-hover table-inverse">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @books.each do |book| %>
-  <tr>
-    <td>
-      <%= image_tag current_user.get_profile_image(100,100) %>
-    <td>
-    <td>
-      <%= book.title %>
-    </td>
-    <td>
-      <%= book.body %>
-    </td>
-  </tr>
-<% end %>
-  </tbody>
-</table>
