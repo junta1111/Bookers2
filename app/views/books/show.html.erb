@@ -1,11 +1,14 @@
-<%= render 'list', book: @book %>
+<%= render 'books/list', book: @book_new %>
 
-    <div class="col-md 8 offset-md-1">
+    <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
         <table class="table table-hover table-inverse">
          <td>
-           <%= image_tag @user.get_profile_image(100,100) %><br>
-           <%= link_to @user.name,user_path %>
+           <%= link_to user_path(@user.id) do %>
+           <%= image_tag @user.get_profile_image(100,100) %>
+           <% end %>
+           <br>
+           <%= link_to @user.name,user_path(@user.id) %>
          </td>
          <td>
            <%= link_to @book.title %>
@@ -22,7 +25,7 @@
          </td>
          <td>
            <% if @book.user == current_user %>
-           <%= link_to "Destroy", book_path(@book), class:"btn btn-sm btn-danger destroy_book",method: :delete %>
+           <%= link_to "Destroy", book_path(@book), class:"btn btn-sm btn-danger destroy_book",method: :delete, data: { confirm: "本当に消しますか？" } %>
            <% end %>
          </td>
         </table>
